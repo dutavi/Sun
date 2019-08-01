@@ -68,9 +68,9 @@ class PhrasesController < ApplicationController
     end
 
     def phrases_owner
-    unless @phrase.user_id == current_user.id || current_user.admin?
-      flash[:status] = "Access denied as you are not owner of this Phrases"
-      redirect_to phrases_path
+      unless @phrase.user_id == current_user.id || current_user.admin?
+        flash[:status] = "Access denied as you are not owner of this Phrases"
+        redirect_to phrases_path
+      end
     end
   end
-end
