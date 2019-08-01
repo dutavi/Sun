@@ -1,0 +1,21 @@
+<p>
+  <strong>Sentence:</strong>
+  <%= @phrase.sentence %>
+</p>
+<br/>
+<%= link_to 'Edit', edit_phrase_path(@phrase), class: "btn btn-danger" %> |
+<%= link_to 'Back', phrases_path, class: "btn btn-dark" %>
+<br/>
+<br/>
+
+<%= form_with model: [@phrase, @comment], local: true do |f| %>
+<%= f.text_field :body %> 
+<%= f.submit "Comment" %> 
+<% end %>
+<hr/>
+
+<div id="comment_pane">
+<% @comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+  <% end %>
+</div>

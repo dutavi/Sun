@@ -1,0 +1,52 @@
+version: "3.5"
+
+x-base: &base
+  build: .
+  tty: true
+  stdin_open: true
+  working_dir: /workspace
+  environment:
+    PORT: 3000
+  volumes:
+    - .:/workspace
+    - bundle-cache:/usr/local/bundle
+  command:
+    - /bin/sh
+    - -c
+    - |
+      set -ex
+      bundle check || bundle install
+      if [ -f tmp/pids/server.pid ]; then
+        rm tmp/pids/server.pid
+      fi
+      bundle exec rails server -b0
+
+services:
+  app:
+    <<: *base
+    container_name: 'minerva.app'
+    ports:
+      - 3000:3000
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -ex
+        bundle check || bundle install
+        sleep infinity
+        bundle exec guard
+
+  test:
+    <<: *base
+    container_name: 'minerva.test'
+    command:
+      - /bin/sh
+      - -c
+      - |
+        set -ex
+        bundle check || bundle install
+        bundle exec guard --no-bundler-warning --no-interactions
+
+volumes:
+  bundle-cache:
+    driver: local

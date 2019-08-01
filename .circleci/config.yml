@@ -1,0 +1,103 @@
+version: 2
+references:
+  container: &container
+    docker:
+      - image: yeuem1vannam/circleci-ruby:2.6.1-node-browsers
+        environment:
+          BUNDLE_PATH: ~/bundle
+          BUNDLE_WITHOUT: production
+          RAILS_ENV: test
+          RACK_ENV: test
+    working_directory: ~/workspace
+
+  attach_code: &attach_code
+    attach_workspace:
+      at: ~/
+
+jobs:
+  prepare:
+    <<: *container
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v3-bundle-{{ checksum "Gemfile.lock" }}
+            - v3-bundle-
+            - v3-yarn-{{ checksum "yarn.lock" }}
+            - v3-yarn-
+      - run:
+          name: install dependencies
+          command: |
+            echo '--modules-folder /home/circleci/node_modules' > .yarnrc
+            bundle check || bundle install --jobs=4 --retry=3
+            yarn check || yarn install
+            ln -fs /home/circleci/node_modules ./node_modules
+
+      - save_cache:
+          key: v3-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/bundle
+      - save_cache:
+          key: v3-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/node_modules
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - workspace
+            - bundle
+            - node_modules
+  rubocop:
+    <<: *container
+    steps:
+      - *attach_code
+      # run tests!
+      # - run:
+      #     name: pronto
+      #     command: |
+      #       RUBOCOP_CONFIG=`pwd`/.rubocop.yml \
+      #         pronto run -f github_pr -c origin/master
+      - run:
+          name: run rubocop
+          command: bundle exec rubocop
+
+  rspec:
+    <<: *container
+    steps:
+      - *attach_code
+      # Database setup
+      - run: bundle exec rake db:create db:migrate --trace
+      # run tests!
+      - run:
+          name: run rspec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
+
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+workflows:
+  version: 2
+  build-and-rspec:
+    jobs:
+      - prepare
+      - rubocop:
+          requires:
+            - prepare
+      - rspec:
+          requires:
+            - prepare
