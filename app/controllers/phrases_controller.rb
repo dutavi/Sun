@@ -3,6 +3,8 @@
 class PhrasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
+  before_action :phrases_owner, only: [:edit, :update, :destroy]
+
 
   def index
     @phrases = Phrase.all
@@ -20,8 +22,10 @@ class PhrasesController < ApplicationController
   def edit
   end
 
+
   def create
     @phrase = Phrase.new(phrase_params)
+    @phrase.user_id = current_user.id
 
     respond_to do |format|
       if @phrase.save
@@ -62,4 +66,11 @@ class PhrasesController < ApplicationController
     def phrase_params
       params.require(:phrase).permit(:sentence)
     end
+
+    def phrases_owner
+    unless @phrase.user_id == current_user.id || current_user.admin?
+      flash[:status] = "Access denied as you are not owner of this Phrases"
+      redirect_to phrases_path
+    end
+  end
 end
