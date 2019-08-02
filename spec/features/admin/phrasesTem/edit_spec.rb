@@ -12,7 +12,9 @@ feature "admin > phrasesterms > edit", :devise do
   end
 
   let(:admin) { create :user, :admin }
-  let(:phrases_term) { create :phrases_term }
+  let(:phrase) { create :phrase, user: admin }
+  let(:phrases_term) { create :phrases_term, phrase: phrase }
+
 
   before do
     login_as admin, scope: :user
