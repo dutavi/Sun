@@ -15,6 +15,7 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :phrases, dependent: :destroy
+  has_many :terms, dependent: :destroy
 
   def username
     return email.split("@")[0].capitalize

@@ -11,7 +11,7 @@ feature "admin > terms > edit", :devise do
   end
 
   let(:admin) { create :user, :admin }
-  let(:term) { create :term }
+  let(:term) { create :term, user: admin }
 
   before do
     login_as admin, scope: :user

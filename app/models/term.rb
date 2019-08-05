@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Term < ApplicationRecord
+  belongs_to :user
   has_and_belongs_to_many :phrases
   validates :word, :meaning, :reading, presence: true
   validates :word , length: { maximum: 255 }
