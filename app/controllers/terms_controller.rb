@@ -47,7 +47,6 @@ class TermsController < ApplicationController
   def update
     respond_to do |format|
       if @term.update(term_params)
-        #format.html { redirect_to @term, notice: "Term was successfully updated." }
         format.html { redirect_to @term, notice: I18n.t("term_update_success") }
         format.json { render :show, status: :ok, location: @term }
       else
