@@ -21,4 +21,5 @@ RSpec.describe Term, type: :model do
   #end.
 
   it { should have_and_belong_to_many(:phrases) }
+  it { should belong_to(:user) }
 end

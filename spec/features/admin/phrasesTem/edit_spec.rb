@@ -13,7 +13,8 @@ feature "admin > phrasesterms > edit", :devise do
 
   let(:admin) { create :user, :admin }
   let(:phrase) { create :phrase, user: admin }
-  let(:phrases_term) { create :phrases_term, phrase: phrase }
+  let(:term) { create :term, user: admin }
+  let(:phrases_term) { create :phrases_term, phrase: phrase, term: term }
 
 
   before do

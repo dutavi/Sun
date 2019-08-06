@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= I18n.t("pages.terms.show.word") %>:</strong>
+  <%= @term.word %>
+</p>
+
+<p>
+  <strong><%= I18n.t("pages.terms.show.meaning") %>:</strong>
+  <%= @term.meaning %>
+</p>
+
+<p>
+  <strong><%= I18n.t("pages.terms.show.reading") %>:</strong>
+  <%= @term.reading %>
+</p>
+
+<%= link_to 'Edit', edit_term_path(@term) %> |
+<%= link_to 'Back', terms_path %>

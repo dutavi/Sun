@@ -9,7 +9,7 @@ RSpec.describe PhrasesTerm, type: :model do
   it do
     user = create(:user)
     phrase = create(:phrase, user_id: user.id)
-    term_params = attributes_for(:term)
+    term_params = attributes_for(:term, user_id: user.id)
     expect {
       phrase.terms.create(term_params)
     }.to change { Term.count }.by(1)
@@ -17,7 +17,7 @@ RSpec.describe PhrasesTerm, type: :model do
 
   it do
     user = create(:user)
-    term = create(:term)
+    term = create(:term, user_id: user.id)
     phrase_params = attributes_for(:phrase, user_id: user.id)
     expect {
       term.phrases.create(phrase_params)
@@ -26,7 +26,8 @@ RSpec.describe PhrasesTerm, type: :model do
 
   it do
     user = create(:user)
-    term = create(:term)
+    term = create(:term, user_id: user.id)
+    phrase = create(:phrase, user_id: user.id)
     phrase_params = attributes_for(:phrase, user_id: user.id)
     expect {
       term.phrases.create(phrase_params)
