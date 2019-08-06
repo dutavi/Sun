@@ -90,4 +90,7 @@ pickle-email-*.html
 /storage/*
 !/storage/.keep
 /config/master.key
+app/assets/stylesheets/comments.scss
+app/helpers/comments_helper.rb
+app/helpers/phrases_helper.rb
 public/packs/manifest.json
