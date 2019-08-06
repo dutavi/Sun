@@ -31,7 +31,29 @@
 
 en:
   hello: "Hello world"
-  term_update_success: "Term was successfully updated"
-  term_create_success: "Term was successfully created"
-  term_destroy_success: "Term was successfully destroyed"
-  term_owner: "Access denied as you are not owner of this Terms"
+  
+  pages:
+    terms:
+      update: 
+        success: "Term was successfully updated"
+      create: 
+        success: "Term was successfullt created"
+      index:
+        title: "Term"
+        word: "Word"
+        meaning: "Meaning"
+        reading: "Reading"
+      new:
+        new_term: "New Term"
+      destroy:
+        success: "Term was siccessfullt destroy"
+      term_owner:
+        flash: "Access denied as you are not owner of this"
+      show:
+        word: "Word"
+        meaning: "Meaning"
+        reading: "Reading"
+      edit: 
+        title: "Editing Term"
+        
+

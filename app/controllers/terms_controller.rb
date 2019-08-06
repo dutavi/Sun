@@ -33,7 +33,7 @@ class TermsController < ApplicationController
 
     respond_to do |format|
       if @term.save
-        format.html { redirect_to @term, notice: I18n.t("term_create_success") }
+        format.html { redirect_to @term, notice: I18n.t("pages.terms.create.success") }
         format.json { render :show, status: :created, location: @term }
       else
         format.html render "new"
@@ -47,7 +47,7 @@ class TermsController < ApplicationController
   def update
     respond_to do |format|
       if @term.update(term_params)
-        format.html { redirect_to @term, notice: I18n.t("term_update_success") }
+        format.html { redirect_to @term, notice: I18n.t("pages.terms.update.success") }
         format.json { render :show, status: :ok, location: @term }
       else
         format.html render "edit"
@@ -61,7 +61,7 @@ class TermsController < ApplicationController
   def destroy
     @term.destroy
     respond_to do |format|
-      format.html { redirect_to terms_url, notice: I18n.t("term_destroy_success") }
+      format.html { redirect_to terms_url, notice: I18n.t("pages.terms.destroy.success") }
       format.json { head :no_content }
     end
   end
@@ -79,7 +79,7 @@ class TermsController < ApplicationController
 
   def terms_owner
     unless @term.user_id == current_user.id || current_user.admin?
-      flash[:status] = I18n.t("term_owner")
+      flash[:status] = I18n.t("pages.terms.term_owner.flash")
       redirect_to terms_path
     end
   end
