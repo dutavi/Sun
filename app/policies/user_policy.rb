@@ -2,7 +2,7 @@
 
 class UserPolicy < ApplicationPolicy
   def show?
-    super or current_user == model
+    true
   end
 
   def destroy?

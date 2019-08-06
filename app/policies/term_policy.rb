@@ -9,6 +9,10 @@ class TermPolicy < ApplicationPolicy
     super
   end
 
+  def update?
+    false
+  end
+
   class Scope < Scope
     def resolve
       scope.where(id: current_user.id)

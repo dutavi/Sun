@@ -33,10 +33,10 @@ class TermsController < ApplicationController
 
     respond_to do |format|
       if @term.save
-        format.html { redirect_to @term, notice: "Term was successfully created." }
+        format.html { redirect_to @term, notice: I18n.t("term_create_success") }
         format.json { render :show, status: :created, location: @term }
       else
-        format.html { render "new" }
+        format.html render "new"
         format.json { render json: @term.errors, status: :unprocessable_entity }
       end
     end
@@ -47,10 +47,11 @@ class TermsController < ApplicationController
   def update
     respond_to do |format|
       if @term.update(term_params)
-        format.html { redirect_to @term, notice: "Term was successfully updated." }
+        #format.html { redirect_to @term, notice: "Term was successfully updated." }
+        format.html { redirect_to @term, notice: I18n.t("term_update_success") }
         format.json { render :show, status: :ok, location: @term }
       else
-        format.html { render "edit" }
+        format.html render "edit"
         format.json { render json: @term.errors, status: :unprocessable_entity }
       end
     end
@@ -61,7 +62,7 @@ class TermsController < ApplicationController
   def destroy
     @term.destroy
     respond_to do |format|
-      format.html { redirect_to terms_url, notice: "Term was successfully destroyed." }
+      format.html { redirect_to terms_url, notice: I18n.t("term_destroy_success") }
       format.json { head :no_content }
     end
   end
@@ -79,7 +80,7 @@ class TermsController < ApplicationController
 
   def terms_owner
     unless @term.user_id == current_user.id || current_user.admin?
-      flash[:status] = "Access denied as you are not owner of this Terms"
+      flash[:status] = I18n.t("term_owner")
       redirect_to terms_path
     end
   end

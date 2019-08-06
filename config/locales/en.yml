@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  term_update_success: "Term was successfully updated"
+  term_create_success: "Term was successfully created"
+  term_destroy_success: "Term was successfully destroyed"
+  term_owner: "Access denied as you are not owner of this Terms"
