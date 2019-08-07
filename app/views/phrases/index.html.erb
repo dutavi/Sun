@@ -1,28 +1,52 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-<h1> <ins>Phrases </ins></h1>
-<%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
-<hr/>
-<table>
-  <thead>
-    <tr>
-      <th>Sentence</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container">
+  <h2>Phrase</h2>
+  <%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
+  <br/>
+  <br/>
+  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>         
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Created_by</th>
+        <th>Sentence</th>
+        <th>Comments</th>
+        <th>Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @phrases.each do |phrase| %>
       <tr>
-        <td>Created_by:  <strong><%= phrase.user.username %></strong>:</td>
-        <td><%= phrase.sentence %></td>
-        <td><%= link_to 'Show', phrase, class: "btn btn-warning" %></td>
-        <td><%= link_to 'Edit', edit_phrase_path(phrase), class: "btn btn-danger" %></td>
-        <td><%= link_to 'Destroy', phrase, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-dark" %></td>
+        <td><strong><%=link_to phrase.user.username %></strong>:</td>
+        <td>
+        <%=link_to phrase.sentence, phrase %>
+        </td>
         <td><%= pluralize(phrase.comments.count, "Comments") %></td>
-        <td> [<%= phrase.created_at.strftime("%R-%m-%d") %>] </td>
+        <td>[<%= phrase.created_at.strftime("%R-%m-%d") %>] </td>
+        <td><%= link_to 'Destroy', phrase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-<hr/>
-<br>
+    </tbody>
+  </table>
+  <hr/>
+</div>
+</body>
+</html>
+
+
+
+
+
