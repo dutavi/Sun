@@ -5,11 +5,11 @@ class PhrasePolicy < ApplicationPolicy
     super or current_user == model
   end
 
-  
+
   def edit?
     update?
   end
-  
+
   def update?
     user = current_user
     phrase = model
@@ -22,7 +22,7 @@ class PhrasePolicy < ApplicationPolicy
     return true if user.id == phrase.user_id
     super
   end
-  
+
   class Scope < Scope
     def resolve
       scope.where(id: current_user.id)
