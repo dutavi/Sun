@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -31,7 +29,7 @@
       <tr>
         <td><strong><%=link_to phrase.user.username %></strong>:</td>
         <td>
-          <%=link_to phrase.sentence, phrase %> 
+          <%=link_to phrase.sentence, phrase %>
         </td>
         <td><%= pluralize(phrase.comments.count, "Comments") %></td>
         <td>[<%= phrase.created_at.strftime("%R-%m-%d") %>] </td>
@@ -43,4 +41,3 @@
   <hr/>
 </div>
 </body>
-</html>
