@@ -6,7 +6,7 @@ class PhrasesController < ApplicationController
   before_action :phrases_owner, only: [:edit, :update, :destroy]
 
   def index
-    @phrases = Phrase.all.order("created_at DESC")
+    @phrases = Phrase.order("created_at DESC")
   end
 
   def show
@@ -69,7 +69,6 @@ class PhrasesController < ApplicationController
   def phrases_owner
     unless @phrase.user_id == current_user.id || current_user.admin?
       flash[:status] = "Access denied as you are not owner of this Phrases"
-      redirect_to phrases_path
     end
   end
 end

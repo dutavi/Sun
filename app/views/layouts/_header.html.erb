@@ -3,34 +3,24 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
   <body>
 <div class="topnav" id="myTopnav">
   <%= link_to "Home", root_path, class:"active" %>
   <%= link_to "Terms", terms_path %>
   <%= link_to "Phrases", phrases_path %>
-  <a href="#about">Login</a>
-  <a href="#about">Logout</a>
 </div>
-
 <div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content">
     <a href="#">Deck</a>
     <a href="#about">Users</a>
-    <a href="#">Clients</a>
+    <a href="#">Logout</a>
     <a href="#">Contact</a>
   </div>
 </div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-<script>
-function openNav() {
-  document.getElementById("myNav").style.width = "100%";
-}
-
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
-}
-</script>
-</body>
+<%= javascript_pack_tag "application" %>
+  </body>
 </html>
