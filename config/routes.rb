@@ -15,7 +15,11 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :terms
+  resources :users
+  resources :terms do
+    resources :likes
+    resources :phrases_terms, only: [:create, :destroy]
+  end
   resources :phrases do
     resources :comments, only: [:create, :destroy]
   end

@@ -1,19 +1,39 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong><%= I18n.t("pages.terms.show.word") %>:</strong>
-  <%= @term.word %>
-</p>
-
-<p>
-  <strong><%= I18n.t("pages.terms.show.meaning") %>:</strong>
-  <%= @term.meaning %>
-</p>
-
-<p>
-  <strong><%= I18n.t("pages.terms.show.reading") %>:</strong>
-  <%= @term.reading %>
-</p>
-
-<%= link_to 'Edit', edit_term_path(@term) %> |
-<%= link_to 'Back', terms_path %>
+<div class="container">
+<table class="table">
+    <thead>
+      <tr>
+      <th>Created_by</th>
+      <th>
+        <%= I18n.t("pages.terms.show.word") %>:
+      </th>
+      <th>
+        <%= I18n.t("pages.terms.show.meaning") %>:
+      <th>
+        <%= I18n.t("pages.terms.show.reading") %>:
+      </th>
+      <th>
+        <%= "Create Phrase_Term" %>
+      </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @term.user.username %>:</td>
+        <td><%= @term.word %></td>
+        <td><%= @term.meaning %></td>
+        <td><%= @term.reading %></td>
+        <td><%= link_to 'Create'%></td>
+        <td><% pre_like = @term.likes.find { |like| like.user_id == current_user.id} %>
+          <% if pre_like %>
+        <%= button_to 'Unlike', term_like_path(@term, pre_like), method: :delete %>
+        <%= @term.likes.count %>
+          <% else %>
+          <%= button_to 'Like', term_likes_path(@term), method: :post, class: "far fa-heart" %>
+          <%= @term.likes.count %>
+          <% end %>
+        </td>
+      </tr>
+  </table>
+<%= link_to 'Back', terms_path %> |
+<%= link_to 'Edit', edit_term_path %> 
+</div>

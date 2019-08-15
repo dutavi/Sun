@@ -3,7 +3,6 @@
 class TermsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_term, only: [:show, :edit, :update, :destroy]
-  before_action :terms_owner, only: [:edit, :update, :destroy]
 
   # GET /terms
   # GET /terms.json
@@ -14,6 +13,8 @@ class TermsController < ApplicationController
   # GET /terms/1
   # GET /terms/1.json
   def show
+    @phrases_term =  PhrasesTerm.new
+    @phrases_terms = @term.phrases_term.order("created_at DESC")
   end
 
   # GET /terms/new
@@ -74,13 +75,6 @@ class TermsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def term_params
-    params.require(:term).permit(:word, :meaning, :reading)
-  end
-
-  def terms_owner
-    unless @term.user_id == current_user.id || current_user.admin?
-      flash[:status] = I18n.t("pages.terms.term_owner.flash")
-      redirect_to terms_path
-    end
+    params.require(:term).permit(:term_id, :word, :meaning, :reading)
   end
 end

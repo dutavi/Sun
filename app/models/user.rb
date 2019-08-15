@@ -24,6 +24,7 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+  has_many :likes, dependent: :destroy
 
   def followed(other_user)
     following << other_user
@@ -36,7 +37,7 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-
+  
   def username
     return email.split("@")[0].capitalize
   end

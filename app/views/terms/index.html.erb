@@ -1,35 +1,30 @@
-<p id="notice"><%= notice %></p>
-
+<div class="container">
 <h1><%= I18n.t("pages.terms.index.title") %> </h1>
-
-<table>
-  <thead>
-    <tr>
+    <%= link_to 'New Term', new_term_path, class: "btn btn-primary" %>
+  <br/>
+  <br/>
+  <table class="table">
+    <thead>
+      <tr>
+      <th>Created_by</th>
       <th><%= I18n.t("pages.terms.index.word") %></th>
       <th><%= I18n.t("pages.terms.index.meaning") %></th>
       <th><%= I18n.t("pages.terms.index.reading") %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+      <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @terms.each do |term| %>
       <tr>
+        <td><%= term.user.username %>:</td>
         <td><%= term.word %></td>
         <td><%= term.meaning %></td>
         <td><%= term.reading %></td>
-        <td><%= link_to 'Show', term %></td>
-        <td>
-          <% if policy(term).update? %>
-          <%= link_to 'Edit', edit_term_path(term) %>
-        <% end %>
-        </td>
-        <td><%= link_to 'Destroy', term, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><strong><%= link_to 'Show', term %></strong></td>
+        <td><%= term.likes.count %></td>
       </tr>
     <% end %>
   </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Term', new_term_path %>
+  </table>
+  <hr/>
+</div>
