@@ -1,0 +1,24 @@
+// Place all the styles related to the Relationships controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.stats {
+  overflow: auto;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px ;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}

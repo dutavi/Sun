@@ -5,4 +5,5 @@ class Phrase < ApplicationRecord
   has_and_belongs_to_many :terms
   validates :sentence, presence: true
   has_many :comments, dependent: :destroy
+  scope :recent, -> { order("created_at DESC") }
 end

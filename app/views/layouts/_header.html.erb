@@ -1,0 +1,16 @@
+<div class="topnav" id="myTopnav">
+  <%= link_to "Home", root_path, class:"active" %>
+  <%= link_to "Terms", terms_path %>
+  <%= link_to "Phrases", phrases_path %>
+</div>
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">Deck</a>
+    <a href="#about">Users</a>
+    <a href="#">Logout</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+<%= javascript_pack_tag "application" %>

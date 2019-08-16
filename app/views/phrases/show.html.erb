@@ -1,3 +1,4 @@
+<div class="container">
 <p>
   <strong>Sentence:</strong>
   <%= @phrase.sentence %>
@@ -18,4 +19,5 @@
 <% @comments.each do |comment| %>
   <%= render 'comments/comment', comment: comment %>
   <% end %>
+</div>
 </div>

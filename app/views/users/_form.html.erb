@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Phrase</h2>
-    <%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
+  <%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
   <br/>
   <br/>
   <table class="table">
@@ -18,13 +18,14 @@
       <tr>
         <td><strong><%=link_to phrase.user.username %></strong>:</td>
         <td>
-          <%=link_to phrase.sentence, phrase %>
+        <%=link_to phrase.sentence, phrase %>
         </td>
         <td><%= pluralize(phrase.comments.count, "Comments") %></td>
         <td>[<%= phrase.created_at.strftime("%R-%m-%d") %>] </td>
         <td><%= link_to 'Destroy', phrase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+    </tbody>
   </table>
   <hr/>
 </div>
