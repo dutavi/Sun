@@ -3,7 +3,6 @@
 class PhrasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_phrase, only: [:show, :edit, :update, :destroy]
-  before_action :phrases_owner, only: [:edit, :update, :destroy]
 
   def index
     @phrases = Phrase.all
@@ -19,6 +18,7 @@ class PhrasesController < ApplicationController
   end
 
   def edit
+    authorize @phrase
   end
 
   def create
@@ -37,6 +37,7 @@ class PhrasesController < ApplicationController
   end
 
   def update
+    authorize @phrase
     respond_to do |format|
       if @phrase.update(phrase_params)
         format.html { redirect_to @phrase, notice: "Phrase was successfully updated." }
@@ -49,6 +50,7 @@ class PhrasesController < ApplicationController
   end
 
   def destroy
+    authorize @phrase
     @phrase.destroy
     respond_to do |format|
       format.html { redirect_to phrases_url, notice: "Phrase was successfully destroyed." }
@@ -64,11 +66,5 @@ class PhrasesController < ApplicationController
 
   def phrase_params
     params.require(:phrase).permit(:sentence)
-  end
-
-  def phrases_owner
-    unless @phrase.user_id == current_user.id || current_user.admin?
-      flash[:status] = "Access denied as you are not owner of this Phrases"
-    end
   end
 end
