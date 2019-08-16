@@ -24,13 +24,13 @@
         <td><%= @term.reading %></td>
         <td><%= link_to 'Create'%></td>
         <td><% pre_like = @term.likes.find { |like| like.user_id == current_user.id} %>
-          <% if pre_like %>
-        <%= button_to 'Unlike', term_like_path(@term, pre_like), method: :delete %>
-        <%= @term.likes.count %>
-          <% else %>
-          <%= button_to 'Like', term_likes_path(@term), method: :post, class: "far fa-heart" %>
+        <% if pre_like %>
+          <%= button_to 'Unlike', term_like_path(@term, pre_like), method: :delete %>
           <%= @term.likes.count %>
-          <% end %>
+        <% else %>
+          <%= button_to 'Like', term_likes_path(@term), method: :post %>
+          <%= @term.likes.count %>
+        <% end %>
         </td>
       </tr>
   </table>

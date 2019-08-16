@@ -9,5 +9,5 @@ class Term < ApplicationRecord
   validates :reading, length: { maximum: 255 }
   has_many :phrases_term
   has_many :likes, dependent: :destroy
-
+  scope :recent, -> { order ("created_at DESC") }
 end

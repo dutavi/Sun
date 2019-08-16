@@ -4,10 +4,9 @@ class LikesController < ApplicationController
   before_action :find_term
   before_action :find_like, only: [:destroy]
 
-
   def create
     if already_liked?
-      flash[:notice] = "You can't like more than once"
+      flash[:notice] = I18n.t("pages.likes.create.flash")
     else
       @term.likes.create(user_id: current_user.id)
     end
@@ -16,7 +15,7 @@ class LikesController < ApplicationController
 
   def destroy
     if !(already_liked?)
-      flash[:notice] = "Cannot unlike"
+      flash[:notice] = I18n.t("pages.likes.destroy.flash")
     else
       @like.destroy
     end
@@ -34,7 +33,6 @@ class LikesController < ApplicationController
   end
 
   def already_liked?
-    Like.where(user_id: current_user.id, term_id:
-    params[:term_id]).exists?
+    Like.where(user_id: current_user.id, term_id: params[:term_id]).exists?
   end
 end

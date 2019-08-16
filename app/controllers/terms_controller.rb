@@ -14,7 +14,7 @@ class TermsController < ApplicationController
   # GET /terms/1.json
   def show
     @phrases_term =  PhrasesTerm.new
-    @phrases_terms = @term.phrases_term.order("created_at DESC")
+    @phrases_terms = @term.phrases_term
   end
 
   # GET /terms/new
