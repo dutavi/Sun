@@ -6,7 +6,7 @@ class LikesController < ApplicationController
 
   def create
     if already_liked?
-      flash[:notice] = I18n.t("pages.likes.create.flash")
+      flash[:notice] = I18n.t"pages.likes.create.flash"
     else
       @term.likes.create(user_id: current_user.id)
     end
@@ -15,7 +15,7 @@ class LikesController < ApplicationController
 
   def destroy
     if !(already_liked?)
-      flash[:notice] = I18n.t("pages.likes.destroy.flash")
+      flash[:notice] = I18n.t"pages.likes.destroy.flash"
     else
       @like.destroy
     end
@@ -33,6 +33,8 @@ class LikesController < ApplicationController
   end
 
   def already_liked?
-    Like.where(user_id: current_user.id, term_id: params[:term_id]).exists?
+    user_id =  current_user.id
+    term_id = params[:term_id]
+    Like.publics(user_id, term_id).exists?
   end
 end
