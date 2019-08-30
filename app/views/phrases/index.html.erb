@@ -1,30 +1,33 @@
 <div class="container">
-  <h2>Phrase</h2>
+  <h2><%= I18n.t ("pages.phrases.index.title") %></h2>
     <%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
   <br/>
   <br/>
   <table class="table">
     <thead>
       <tr>
-        <th>Created_by</th>
-        <th>Sentence</th>
-        <th>Comments</th>
-        <th>Time</th>
-        <th>Action</th>
+        <th><%= I18n.t ("pages.phrases.index.created_by") %></th>
+        <th><%= I18n.t ("pages.phrases.index.sentence") %></th>
+        <th><%= I18n.t ("pages.phrases.index.comment") %></th>
+        <th><%= I18n.t ("pages.phrases.index.time") %></th>
+        <th><%= I18n.t ("pages.phrases.index.action") %></th>
       </tr>
     </thead>
     <tbody>
     <% @phrases.each do |phrase| %>
       <tr>
-        <td><strong><%=link_to phrase.user.username %></strong>:</td>
+        <td><strong><%= link_to phrase.user.username %></strong>:</td>
         <td>
           <%=link_to phrase.sentence, phrase %>
         </td>
         <td><%= pluralize(phrase.comments.count, "Comments") %></td>
         <td>[<%= phrase.created_at.strftime("%R-%m-%d") %>] </td>
-        <td><%= link_to 'Destroy', phrase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', phrase %></td>
       </tr>
     <% end %>
   </table>
   <hr/>
+  <div class="pagination">
+    <a><%= will_paginate @phrases %></a>
+  </div>
 </div>

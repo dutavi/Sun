@@ -8,13 +8,12 @@ class TermsController < ApplicationController
   # GET /terms.json
   def index
     @terms = Term.all
+    @terms = Term.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /terms/1
   # GET /terms/1.json
   def show
-    @phrases_term =  PhrasesTerm.new
-    @phrases_terms = @term.phrases_term
   end
 
   # GET /terms/new
@@ -24,6 +23,7 @@ class TermsController < ApplicationController
 
   # GET /terms/1/edit
   def edit
+    authorize @term
   end
 
   # POST /terms
@@ -46,6 +46,7 @@ class TermsController < ApplicationController
   # PATCH/PUT /terms/1
   # PATCH/PUT /terms/1.json
   def update
+    authorize @term
     respond_to do |format|
       if @term.update(term_params)
         format.html { redirect_to @term, notice: I18n.t("pages.terms.update.success") }
@@ -60,6 +61,7 @@ class TermsController < ApplicationController
   # DELETE /terms/1
   # DELETE /terms/1.json
   def destroy
+    authorize @term
     @term.destroy
     respond_to do |format|
       format.html { redirect_to terms_url, notice: I18n.t("pages.terms.destroy.success") }
@@ -75,6 +77,6 @@ class TermsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
   def term_params
-    params.require(:term).permit(:term_id, :word, :meaning, :reading)
+    params.require(:term).permit(:word, :meaning, :reading)
   end
 end

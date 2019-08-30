@@ -30,6 +30,7 @@ gem "haml-rails"
 gem "high_voltage"
 gem "jquery-rails", "~> 4.3"
 gem "pundit"
+gem "will_paginate", "3.1.7"
 
 group :production do
   gem "pg"

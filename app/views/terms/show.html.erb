@@ -12,7 +12,13 @@
         <%= I18n.t("pages.terms.show.reading") %>:
       </th>
       <th>
-        <%= "Create Phrase_Term" %>
+        <%= I18n.t("pages.terms.show.phrases_term") %>
+      </th>
+      <th>
+        <%= I18n.t("pages.terms.show.likes") %>
+      </th>
+      <th>
+        <%= I18n.t("pages.terms.show.phrases_term") %>
       </th>
       </tr>
     </thead>
@@ -22,7 +28,7 @@
         <td><%= @term.word %></td>
         <td><%= @term.meaning %></td>
         <td><%= @term.reading %></td>
-        <td><%= link_to 'Create'%></td>
+        <td><%= link_to 'New', new_term_phrases_term_path(@term, @phrases_term) %></td>
         <td><% pre_like = @term.likes.find { |like| like.user_id == current_user.id} %>
         <% if pre_like %>
           <%= link_to "Unlike", term_like_path(@term, pre_like), method: :delete %>
@@ -32,6 +38,7 @@
           <%= @term.likes.count %>
         <% end %>
         </td>
+        <td><%= link_to 'Lists',  term_phrases_terms_path(@term, @phrases_term) %>
       </tr>
   </table>
 <%= link_to 'Back', terms_path %> |

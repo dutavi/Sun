@@ -4,5 +4,20 @@
         <%= render 'shared/stats' %>
 </section>
 <%= render 'follow' %>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Phrases</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Terms</button>
+</div>
 
-<%= render 'form' %>
+<div id="London" class="tabcontent">
+  <h3><%= I18n.t("pages.users.show.phrases.title") %></h3> 
+  <%= render 'userPT/phrases' %>
+  <%= will_paginate @phrases %>
+</div>
+
+
+<div id="Paris" class="tabcontent">
+  <h3><%= I18n.t("pages.users.show.terms.title") %></h3>
+  <%= render 'userPT/terms' %>
+  <%= will_paginate @terms %>
+</div>

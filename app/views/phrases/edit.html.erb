@@ -1,9 +1,8 @@
-<h1>Editing Phrase</h1>
-<td>Created_by:  <strong><%= @phrase.user.username %></strong></td>
+<h1><%= I18n.t ("pages.phrases.edit.title") %></h1>
+<td><%= I18n.t ("pages.phrases.edit.created_by") %>:
+<strong><%= @phrase.user.username %></strong></td>
 
 <%= render 'form', phrase: @phrase %>
-
-
 
 <%= link_to 'Show', @phrase, class: "btn btn-warning" %> |
 <%= link_to 'Back', phrases_path, class: "btn btn-dark" %>

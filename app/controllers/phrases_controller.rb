@@ -6,6 +6,7 @@ class PhrasesController < ApplicationController
 
   def index
     @phrases = Phrase.all
+    @phrases = Phrase.paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -27,7 +28,7 @@ class PhrasesController < ApplicationController
 
     respond_to do |format|
       if @phrase.save
-        format.html { redirect_to @phrase, notice: "Phrase was successfully created." }
+        format.html { redirect_to @phrase, notice: I18n.t("pages.phrases.create.success") }
         format.json { render :show, status: :created, location: @phrase }
       else
         format.html { render "new" }
@@ -40,7 +41,7 @@ class PhrasesController < ApplicationController
     authorize @phrase
     respond_to do |format|
       if @phrase.update(phrase_params)
-        format.html { redirect_to @phrase, notice: "Phrase was successfully updated." }
+        format.html { redirect_to @phrase, notice: I18n.t("pages.phrases.update.success") }
         format.json { render :show, status: :ok, location: @phrase }
       else
         format.html { render "edit" }
@@ -53,7 +54,7 @@ class PhrasesController < ApplicationController
     authorize @phrase
     @phrase.destroy
     respond_to do |format|
-      format.html { redirect_to phrases_url, notice: "Phrase was successfully destroyed." }
+      format.html { redirect_to phrases_url, notice: I18n.t("pages.phrases.destroy.success") }
       format.json { head :no_content }
     end
   end

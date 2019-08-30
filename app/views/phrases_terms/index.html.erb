@@ -1,0 +1,21 @@
+<div class="container">
+<h1><%= I18n.t("pages.phrases_term.index.title") %></h1>
+  <table class="table">
+    <thead>
+      <tr>
+      <th><%= I18n.t("pages.phrases_term.index.id") %></th>
+      <th><%= I18n.t("pages.phrases_term.index.term") %></th>
+      <th><%= I18n.t("pages.phrases_term.index.phrases") %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @phrases_terms.each do |phrases_term| %>
+      <tr>
+        <td><%= phrases_term.id %></td>
+        <td><%= phrases_term.term_id %></td>
+        <td><%= phrases_term.phrase_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>

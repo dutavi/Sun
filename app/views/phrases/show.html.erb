@@ -1,11 +1,12 @@
 <div class="container">
 <p>
-  <strong>Sentence:</strong>
+  <strong><%= I18n.t ("pages.phrases.show.title") %></strong>
   <%= @phrase.sentence %>
 </p>
 <br/>
-<%= link_to 'Edit', edit_phrase_path(@phrase), class: "btn btn-danger" %> |
-<%= link_to 'Back', phrases_path, class: "btn btn-dark" %>
+<%= link_to 'Edit', edit_phrase_path(@phrase), class: "btn btn-warning" %> |
+ |
+<%= link_to 'Destroy', @phrase, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
 <br/>
 <br/>
 
@@ -20,4 +21,5 @@
   <%= render 'comments/comment', comment: comment %>
   <% end %>
 </div>
+<%= link_to 'Back', phrases_path, class: "btn btn-dark" %>
 </div>

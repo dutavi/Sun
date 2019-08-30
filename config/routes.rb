@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :users
   resources :terms do
     resources :likes
-    resources :phrases_terms, only: [:create, :destroy]
+    resources :phrases_terms, only: [:index, :create, :new]
   end
   resources :phrases do
     resources :comments, only: [:create, :destroy]

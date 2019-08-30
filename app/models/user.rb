@@ -37,7 +37,7 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-  
+
   def username
     return email.split("@")[0].capitalize
   end

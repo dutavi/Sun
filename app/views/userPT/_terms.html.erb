@@ -1,17 +1,13 @@
 <div class="container">
-<h1><%= I18n.t("pages.terms.index.title") %> </h1>
-    <%= link_to 'New Term', new_term_path, class: "btn btn-primary" %>
-  <br/>
-  <br/>
   <table class="table">
     <thead>
       <tr>
-      <th>Created_by</th>
-      <th><%= I18n.t("pages.terms.index.word") %></th>
-      <th><%= I18n.t("pages.terms.index.meaning") %></th>
-      <th><%= I18n.t("pages.terms.index.reading") %></th>
-      <th>Action</th>
-      <th>Likes</th>
+      <th><%= I18n.t("pages.users.show.terms.created_by") %></th>
+      <th><%= I18n.t("pages.users.show.terms.word") %></th>
+      <th><%= I18n.t("pages.users.show.terms.meaning") %></th>
+      <th><%= I18n.t("pages.users.show.terms.reading") %></th>
+      <th><%= I18n.t("pages.users.show.terms.action") %></th>
+      <th><%= I18n.t("pages.users.show.terms.likes") %></th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +24,4 @@
   </tbody>
   </table>
   <hr/>
-  <div class="pagination">
-    <a><%= will_paginate @terms %></a>
-  </div>
 </div>

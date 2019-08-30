@@ -1,16 +1,12 @@
 <div class="container">
-  <h2>Phrase</h2>
-  <%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
-  <br/>
-  <br/>
   <table class="table">
     <thead>
       <tr>
-        <th>Created_by</th>
-        <th>Sentence</th>
-        <th>Comments</th>
-        <th>Time</th>
-        <th>Action</th>
+        <th><%= I18n.t("pages.users.show.phrases.created_by") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.sentence") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.comment") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.time") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.action") %></th>
       </tr>
     </thead>
     <tbody>
