@@ -36,3 +36,5 @@ window.openCity = function(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+document.getElementById("title-page").innerText = "Login"

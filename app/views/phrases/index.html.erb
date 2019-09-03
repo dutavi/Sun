@@ -1,28 +1,44 @@
-<div class="container">
-  <h2><%= I18n.t ("pages.phrases.index.title") %></h2>
-    <%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
-  <br/>
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong><h3><i class="fas fa-external-link-alt"></i>  Phrases</h3></strong></div>
+    <div class="panel-body"><%= link_to 'New Phrases', new_phrase_path, class: "btn btn-primary" %></div>
+  </div>
   <br/>
   <table class="table">
-    <thead>
+    <thead class="thead-dark">
       <tr>
-        <th><%= I18n.t ("pages.phrases.index.created_by") %></th>
-        <th><%= I18n.t ("pages.phrases.index.sentence") %></th>
-        <th><%= I18n.t ("pages.phrases.index.comment") %></th>
-        <th><%= I18n.t ("pages.phrases.index.time") %></th>
-        <th><%= I18n.t ("pages.phrases.index.action") %></th>
+        <th>
+          <i class="fas fa-user"></i>
+          <%= I18n.t ("pages.phrases.index.created_by") %>
+        </th>
+        <th>
+          <i class="fas fa-address-book"></i>
+          <%= I18n.t ("pages.phrases.index.sentence") %>
+        </th>
+        <th>
+          <i class="fas fa-comments"></i>
+          <%= I18n.t ("pages.phrases.index.comment") %>
+        </th>
+        <th>
+          <i class="fas fa-history"></i>
+          <%= I18n.t ("pages.phrases.index.time") %>
+        </th>
+        <th>
+          <i class="fas fa-location-arrow"></i>
+          <%= I18n.t ("pages.phrases.index.action") %>
+        </th>
       </tr>
     </thead>
     <tbody>
     <% @phrases.each do |phrase| %>
       <tr>
-        <td><strong><%= link_to phrase.user.username %></strong>:</td>
+        <td><strong><%= phrase.user.username %></strong>:</td>
         <td>
-          <%=link_to phrase.sentence, phrase %>
+          <%= phrase.sentence %>
         </td>
         <td><%= pluralize(phrase.comments.count, "Comments") %></td>
         <td>[<%= phrase.created_at.strftime("%R-%m-%d") %>] </td>
-        <td><%= link_to 'Show', phrase %></td>
+        <td><strong><%= link_to 'Show', phrase %></strong></td>
       </tr>
     <% end %>
   </table>

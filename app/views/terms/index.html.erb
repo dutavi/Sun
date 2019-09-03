@@ -1,34 +1,52 @@
-<div class="container">
-<h1><%= I18n.t("pages.terms.index.title") %> </h1>
-    <%= link_to 'New Term', new_term_path, class: "btn btn-primary" %>
-  <br/>
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong><h3><i class="fas fa-external-link-alt"></i>  Terms</h3></strong></div>
+    <div class="panel-body"><%= link_to 'New Term', new_term_path, class: "btn btn-primary" %></div>
+  </div>
   <br/>
   <table class="table">
-    <thead>
-      <tr>
-      <th>Created_by</th>
-      <th><%= I18n.t("pages.terms.index.word") %></th>
-      <th><%= I18n.t("pages.terms.index.meaning") %></th>
-      <th><%= I18n.t("pages.terms.index.reading") %></th>
-      <th>Action</th>
-      <th>Likes</th>
-      </tr>
-    </thead>
+  <thead class="thead-dark">
+    <tr>
+      <th>
+        <i class="fas fa-user">  Created_by</i>
+      </th>
+      <th>
+        <i class="fas fa-globe-asia"></i>
+        <%= I18n.t("pages.terms.index.word") %>
+      </th>
+      <th>
+        <i class="fab fa-medium"></i>
+        <%= I18n.t("pages.terms.index.meaning") %>
+      </th>
+      <th>
+        <i class="far fa-registered"></i>
+        <%= I18n.t("pages.terms.index.reading") %>
+      </th>
+      <th>
+        <i class="fas fa-location-arrow">Action</i>
+      </th>
+      <th>
+        <i class="far fa-heart"> Like</i>
+      </th>
+    </tr>
+  </thead>
     <tbody>
     <% @terms.each do |term| %>
       <tr>
-        <td><%= term.user.username %>:</td>
+        <td><strong><%= term.user.username %>:</strong></td>
         <td><%= term.word %></td>
         <td><%= term.meaning %></td>
         <td><%= term.reading %></td>
         <td><strong><%= link_to 'Show', term %></strong></td>
-        <td><%= term.likes.count %></td>
+        <td><i class="fas fa-heart"><%= term.likes.count %></td>
       </tr>
     <% end %>
   </tbody>
-  </table>
+</table>
   <hr/>
   <div class="pagination">
     <a><%= will_paginate @terms %></a>
   </div>
 </div>
+
+

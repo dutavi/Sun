@@ -1,12 +1,28 @@
-<div class="topnav" id="myTopnav">
-  <%= link_to "Home", root_path, class:"active" %>
-  <%= link_to "Terms", terms_path %>
-  <%= link_to "Phrases", phrases_path %>
+<div class="sidebar">
+  <a>
+    <%= link_to root_path do %>
+      <i class="fas fa-home"> Home</i>
+    <% end %>
+  </a>
+  <a>
+    <%= link_to terms_path do %>
+      <i class="fas fa-terminal"> Terms</i>
+    <% end %>
+  </a>
+  <a>
+    <%= link_to phrases_path do %>
+      <i class="fab fa-battle-net"> Phrases</i>
+    <% end %>
+  </a>
   <% if user_signed_in? %>
-  <a><%= link_to('Logout', destroy_user_session_path, method: :delete, style: 'float: right',class: "btn btn-danger" )%></a>
-  <a><%= link_to "Profile", current_user, style: 'float: right' %>
+  <a>
+    <%= link_to current_user do %>
+      <i class="fas fa-user-circle"> Profile</i>
+    <% end %>
+  </a>  
+  <a><%= link_to('Logout', destroy_user_session_path, method: :delete,class: "btn btn-danger" )%></a>
   <% else %>
-  <a><%= link_to('Login', new_user_session_path, style: 'float: right', class: "btn btn-danger") %></a>
+  <a><%= link_to('Login', new_user_session_path, class: "btn btn-danger") %></a>
   <% end %>
 </div>
 <%= javascript_pack_tag "application" %>

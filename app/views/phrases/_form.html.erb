@@ -10,13 +10,15 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :sentence %> : <br/>
-    <%= form.text_field :sentence %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Data Input:</div>
+      <div class="panel-body">
+        <%= form.label :sentence %>:
+        <%= form.text_field :sentence %>
+      </div>
+      <div class="panel-body">
+        <%= form.submit %>
+      </div>
+    </div>
   </div>
 <% end %>

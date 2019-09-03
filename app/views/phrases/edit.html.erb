@@ -1,6 +1,8 @@
 <h1><%= I18n.t ("pages.phrases.edit.title") %></h1>
 <td><%= I18n.t ("pages.phrases.edit.created_by") %>:
 <strong><%= @phrase.user.username %></strong></td>
+</br>
+</br>
 
 <%= render 'form', phrase: @phrase %>
 

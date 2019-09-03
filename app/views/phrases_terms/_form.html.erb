@@ -14,7 +14,7 @@
   <div class="dropdown">
     <button class="dropbtn">Phrase</button>
     <div class="dropdown-content">
-        <a><%= form.select :phrase_id, Phrase.all.collect { |p| [ p.id] }, include_blank: true %></a>
+        <a><%= form.select :phrase_id, Phrase.all.collect { |p| [ p.sentence] }, include_blank: true %></a>
     </div>
   </div>
 

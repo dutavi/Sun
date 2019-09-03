@@ -1,8 +1,8 @@
 <div class="container">
-<p>
-  <strong><%= I18n.t ("pages.phrases.show.title") %></strong>
-  <%= @phrase.sentence %>
-</p>
+  <div class="panel panel-default">
+    <div class="panel-heading"><strong><h3>Sentence</h3></strong><i class="fas fa-angle-down"></i></div>
+    <div class="panel-body"> <%= @phrase.sentence %></div>
+  </div>
 <br/>
 <%= link_to 'Edit', edit_phrase_path(@phrase), class: "btn btn-warning" %> |
  |

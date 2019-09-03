@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
       <tr>
       <th>Created_by</th>
       <th>
@@ -24,21 +24,36 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @term.user.username %>:</td>
-        <td><%= @term.word %></td>
-        <td><%= @term.meaning %></td>
-        <td><%= @term.reading %></td>
-        <td><%= link_to 'New', new_term_phrases_term_path(@term, @phrases_term) %></td>
+        <td>
+          <strong>
+            <%= @term.user.username %>:
+          </strong>
+        </td>
+        <td>
+          <%= @term.word %></td>
+        <td>
+          <%= @term.meaning %></td>
+        <td>
+          <%= @term.reading %></td>
+        <td>
+          <%= link_to new_term_phrases_term_path(@term, @phrases_term) do %>
+            <i class="fas fa-external-link-alt"> New</i>
+          <% end %>
+        </td>
         <td><% pre_like = @term.likes.find { |like| like.user_id == current_user.id} %>
         <% if pre_like %>
-          <%= link_to "Unlike", term_like_path(@term, pre_like), method: :delete %>
+          <%= link_to term_like_path(@term, pre_like), method: :delete  do %>
+            <i class="fas fa-heart-broken"></i>
+          <% end %>
           <%= @term.likes.count %>
         <% else %>
-          <%= link_to "Like", term_likes_path(@term), method: :post %>
+          <%= link_to term_likes_path(@term), method: :post do %>
+            <i class="fas fa-heart"></i>
+          <% end %>
           <%= @term.likes.count %>
         <% end %>
         </td>
-        <td><%= link_to 'Lists',  term_phrases_terms_path(@term, @phrases_term) %>
+        <td><i class="fas fa-list-ul"></i><%= link_to 'Lists',  term_phrases_terms_path(@term, @phrases_term) %>
       </tr>
   </table>
 <%= link_to 'Back', terms_path %> |
