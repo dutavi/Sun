@@ -50,6 +50,7 @@ en:
       term_owner:
         flash: "Access denied as you are not owner of this"
       show:
+        created_by: "Created_By"
         word: "Word"
         meaning: "Meaning"
         reading: "Reading"
