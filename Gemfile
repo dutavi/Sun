@@ -31,6 +31,7 @@ gem "high_voltage"
 gem "jquery-rails", "~> 4.3"
 gem "pundit"
 gem "will_paginate", "3.1.7"
+gem 'gravatarify', '~> 3.0.0'
 
 group :production do
   gem "pg"

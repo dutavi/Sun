@@ -19,7 +19,12 @@
       <div class="top-sidebar">
         <div class="container-fluid">
           <div class="row">
-          <div class="col">
+            <div class="col">
+              <div class="avatar">
+                <% if user_signed_in? %>
+                  <%= gravatar_tag current_user.email, :size => 50 %>
+                <% end %>
+              </div>
             <div id="title-page"><i class="fab fa-angrycreative"></i></div>
           </div>
           </div>
