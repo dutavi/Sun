@@ -7,7 +7,13 @@ class TermsController < ApplicationController
   # GET /terms
   # GET /terms.json
   def index
-    @terms = Term.all
+     if params[:query].present?
+     @terms = Term.where("`title` LIKE '%#{params[:query]}%'")
+     elsif params[:tag].present?
+     @terms = Term.tagged_with([params[:tag]])
+     else
+     @terms = Term.all
+     end
     @terms = Term.paginate(page: params[:page], per_page: 10)
   end
 

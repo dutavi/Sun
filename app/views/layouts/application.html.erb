@@ -20,16 +20,20 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col">
-              <div class="avatar">
-                <% if user_signed_in? %>
-                  <%= gravatar_tag current_user.email, :size => 50 %>
-                <% end %>
-              </div>
-            <div id="title-page"><i class="fab fa-angrycreative"></i></div>
-          </div>
+              <% if user_signed_in? %>
+                <%= gravatar_tag current_user.email, :size => 50 %>
+                <div class="dropdown">
+                    <button onclick="myFunction()"><i class="fas fa-caret-down"></i></button>
+                    <div id="myDropdown" class="dropdown-content">
+                      <%= link_to "View Profile", current_user %>
+                      <%= link_to "Edit Profile", edit_user_registration_path%>
+                    </div>
+                  </div>
+              <% end %>
+              <div id="title-page"><i class="fab fa-angrycreative"></i></div>
+            </div>
           </div>
         </div>
-      </div>
       <div class="main-content container-fluid">
         <%= render "layouts/messages" %>
         <%= yield %>

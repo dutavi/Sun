@@ -2,6 +2,14 @@
   <div class="panel panel-default">
     <div class="panel-heading"><strong><h3><i class="fas fa-external-link-alt"></i>  Terms</h3></strong></div>
     <div class="panel-body"><%= link_to 'New Term', new_term_path, class: "btn btn-primary" %></div>
+      <%= form_with url: terms_path, method: :get, local: true do |f| %>
+        <div class="form-row">
+          <%= f.text_field :query, value: params[:query], placeholder: "Some Thing", aria: { label: "Book's title", describedby: "button-addon2" } %>
+          <div class="input-group-append">
+            <%= f.submit "Search" %>
+          </div>
+        </div>
+    <% end %>
   </div>
   <br/>
   <table class="table">
@@ -48,5 +56,3 @@
     <a><%= will_paginate @terms %></a>
   </div>
 </div>
-
-

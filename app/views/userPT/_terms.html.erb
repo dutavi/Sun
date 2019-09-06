@@ -13,7 +13,7 @@
     <tbody>
     <% @terms.each do |term| %>
       <tr>
-        <td><%= term.user.username %>:</td>
+        <td><strong><%= term.user.username %>:</strong></td>
         <td><%= term.word %></td>
         <td><%= term.meaning %></td>
         <td><%= term.reading %></td>

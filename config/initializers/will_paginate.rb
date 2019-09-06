@@ -1,4 +1,5 @@
- if defined?(WillPaginate)
+# frozen_string_literal: true
+if defined?(WillPaginate)
    ActiveSupport.on_load :active_record do
      module WillPaginate
        module ActiveRecord
@@ -13,4 +14,3 @@
      end
    end
  end
-
