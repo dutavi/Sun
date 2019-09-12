@@ -1,0 +1,14 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">UserName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @likes.each do |like| %>
+      <tr>
+        <td></strong><%=link_to(like.user.username, (users_path)) %></strong></td>
+      <tr>
+      <% end %>
+  </tbody>
+</table>

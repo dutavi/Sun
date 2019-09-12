@@ -1,0 +1,21 @@
+<%= form_with scope: :phrases_term, url: term_phrases_terms_path, local: true do |form| %>
+  <% if phrases_term.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(phrases_term.errors.count, "error") %> prohibited this phrase from being saved:</h2>
+
+      <ul>
+      <% phrases_term.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="abdc">
+    <button class="dropbtn">Phrase</button>
+      <a><%= form.select :phrase_id, Phrase.all.collect { |p| [ p.sentence] }, include_blank: true %></a>
+      <div class="actions">
+    <%= form.submit %>
+  </div>
+  </div>
+<% end %>

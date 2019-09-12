@@ -1,0 +1,38 @@
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+.pagination a.active {
+  background-color: dodgerblue;
+  color: red;
+}
+//Icon like and dislike
+.fa-heart:before {
+    content: "\f004";
+    color: red;
+}
+.fa-heart-broken:before {
+    content: "\f7a9";
+    color: red;
+}
+
+//Icone Word
+.fa-globe-asia:before {
+    content: "\f57e";
+    color: green;
+}
+
+//Icone meaning
+.fa-medium:before {
+    color: aquamarine;
+    content: "\f23a";
+}
+
+//Icon reading
+.fa-registered:before {
+    content: "\f25d";
+    color: chartreuse;
+}

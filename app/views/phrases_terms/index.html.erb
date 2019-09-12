@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-body"><strong><h3>PhrasesTerms</h3></strong></div>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+      <th><%= I18n.t("pages.phrases_term.index.id") %></th>
+      <th><%= I18n.t("pages.phrases_term.index.term") %></th>
+      <th><%= I18n.t("pages.phrases_term.index.phrases") %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @phrases_terms.each do |phrases_term| %>
+      <tr>
+        <td><%= phrases_term.id %></td>
+        <td><%= phrases_term.term.word %></td>
+        <td><%= phrases_term.phrase.sentence %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>

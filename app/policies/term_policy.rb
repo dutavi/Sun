@@ -4,13 +4,21 @@ class TermPolicy < ApplicationPolicy
     super or current_user == model
   end
 
-  def destroy?
-    return false if current_user == model
-    super
+  def edit?
+    update?
   end
 
   def update?
-    false
+    user = current_user
+    term = model
+    return true if user.id == term.user_id
+  end
+
+  def destroy?
+    user = current_user
+    term = model
+    return true if user.id == term.user_id
+    super
   end
 
   class Scope < Scope

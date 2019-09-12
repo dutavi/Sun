@@ -1,8 +1,31 @@
-<p>
-  Email: <%= @user.email if @user.email %> </p>
-<section class="stats">
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fas fa-envelope"></i>  Email: 
+        <strong>
+          <h4><%= @user.email if @user.email %></h4>
+          <%= link_to "Edit Profile", edit_user_registration_path%>
+        </strong>
+    </div>
+    <div class="panel-body"><section class="stats">
         <%= render 'shared/stats' %>
 </section>
-<%= render 'follow' %>
+</br>
+<%= render 'follow' %></div>
+  </div>
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">Phrases</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Terms</button>
+</div>
 
-<%= render 'form' %>
+<div id="London" class="tabcontent">
+  <h3><%= I18n.t("pages.users.show.phrases.title") %></h3> 
+  <%= render 'userPT/phrases' %>
+  <%= will_paginate @phrases %>
+</div>
+
+
+<div id="Paris" class="tabcontent">
+  <h3><%= I18n.t("pages.users.show.terms.title") %></h3>
+  <%= render 'userPT/terms' %>
+  <%= will_paginate @terms %>
+</div>

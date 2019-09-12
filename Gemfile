@@ -26,10 +26,12 @@ gem "administrate"
 gem "bootsnap", ">= 1.4.1", require: false
 gem "devise"
 gem "devise_invitable"
+gem "gravatarify", "~> 3.0.0"
 gem "haml-rails"
 gem "high_voltage"
 gem "jquery-rails", "~> 4.3"
 gem "pundit"
+gem "will_paginate", "3.1.7"
 
 group :production do
   gem "pg"

@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+      <th><%= I18n.t("pages.users.show.terms.created_by") %></th>
+      <th><%= I18n.t("pages.users.show.terms.word") %></th>
+      <th><%= I18n.t("pages.users.show.terms.meaning") %></th>
+      <th><%= I18n.t("pages.users.show.terms.reading") %></th>
+      <th><%= I18n.t("pages.users.show.terms.action") %></th>
+      <th><%= I18n.t("pages.users.show.terms.likes") %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @terms.each do |term| %>
+      <tr>
+        <td><strong><%= term.user.username %>:</strong></td>
+        <td><%= term.word %></td>
+        <td><%= term.meaning %></td>
+        <td><%= term.reading %></td>
+        <td><strong><%= link_to 'Show', term %></strong></td>
+        <td><%= term.likes.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <hr/>
+</div>

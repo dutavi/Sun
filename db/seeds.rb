@@ -31,3 +31,9 @@ User.find_or_create_by!(email: ADMIN_EMAIL) do |user|
   user.confirm
   puts "CREATE #{user.email}"
 end
+
+user = User.find_by(email: USER_EMAIL)
+50.times do |i|
+  Term.create user: user, word: "word-#{i}", meaning: "meaning-#{i}", reading: "reading-#{i}"
+  Phrase.create user: user, sentence: "sentence-#{i}"
+end

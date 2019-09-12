@@ -1,6 +1,6 @@
 <div id="comment-<%= comment.id %>">
-  [<%= comment.created_at %>]
-  <%= comment.user.username %> :
+  [<%= Time.now %>]
+  <strong><%= comment.user.username %></strong> :
   <% if current_user && current_user == comment.user || current_user.admin? %>
     <%= link_to "Delete", phrase_comment_path(@phrase, comment),
       method: :delete, remote: true, style: 'float: right' %>

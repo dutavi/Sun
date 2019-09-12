@@ -3,12 +3,18 @@
 class TermsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_term, only: [:show, :edit, :update, :destroy]
-  before_action :terms_owner, only: [:edit, :update, :destroy]
 
   # GET /terms
   # GET /terms.json
   def index
+    if params[:query].present?
+    @terms = Term.where("`title` LIKE '%#{params[:query]}%'")
+    elsif params[:tag].present?
+    @terms = Term.tagged_with([params[:tag]])
+    else
     @terms = Term.all
+    end
+    @terms = Term.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /terms/1
@@ -23,6 +29,7 @@ class TermsController < ApplicationController
 
   # GET /terms/1/edit
   def edit
+    authorize @term
   end
 
   # POST /terms
@@ -45,6 +52,7 @@ class TermsController < ApplicationController
   # PATCH/PUT /terms/1
   # PATCH/PUT /terms/1.json
   def update
+    authorize @term
     respond_to do |format|
       if @term.update(term_params)
         format.html { redirect_to @term, notice: I18n.t("pages.terms.update.success") }
@@ -59,6 +67,7 @@ class TermsController < ApplicationController
   # DELETE /terms/1
   # DELETE /terms/1.json
   def destroy
+    authorize @term
     @term.destroy
     respond_to do |format|
       format.html { redirect_to terms_url, notice: I18n.t("pages.terms.destroy.success") }
@@ -75,12 +84,5 @@ class TermsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
   def term_params
     params.require(:term).permit(:word, :meaning, :reading)
-  end
-
-  def terms_owner
-    unless @term.user_id == current_user.id || current_user.admin?
-      flash[:status] = I18n.t("pages.terms.term_owner.flash")
-      redirect_to terms_path
-    end
   end
 end

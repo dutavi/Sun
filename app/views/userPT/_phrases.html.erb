@@ -1,16 +1,12 @@
-<div class="container">
-  <h2>Phrase</h2>
-  <%= link_to 'New Phrase', new_phrase_path, class: "btn btn-primary" %>
-  <br/>
-  <br/>
+<div class="container-fluid">
   <table class="table">
-    <thead>
+    <thead class="thead-dark">
       <tr>
-        <th>Created_by</th>
-        <th>Sentence</th>
-        <th>Comments</th>
-        <th>Time</th>
-        <th>Action</th>
+        <th><%= I18n.t("pages.users.show.phrases.created_by") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.sentence") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.comment") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.time") %></th>
+        <th><%= I18n.t("pages.users.show.phrases.action") %></th>
       </tr>
     </thead>
     <tbody>
@@ -22,7 +18,7 @@
         </td>
         <td><%= pluralize(phrase.comments.count, "Comments") %></td>
         <td>[<%= phrase.created_at.strftime("%R-%m-%d") %>] </td>
-        <td><%= link_to 'Destroy', phrase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><strong><%= link_to 'Show', phrase %></strong></td>
       </tr>
     <% end %>
     </tbody>

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :set_phrase
   before_action :authenticate_user!
+  before_action :set_phrase
 
   def create
     @comment = @phrase.comments.new(comment_params)

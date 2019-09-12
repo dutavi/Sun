@@ -10,23 +10,23 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :word %>
-    <%= form.text_field :word %>
-  </div>
-
-  <div class="field">
-    <%= form.label :meaning %>
-    <%= form.text_field :meaning %>
-  </div>
-
-  <div class="field">
-    <%= form.label :reading %>
-    <%= form.text_field :reading %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="panel panel-default">
+    <div class="panel-heading">Data Input:  <i class="fas fa-external-link-alt"></i></div>
+      <div class="panel-body">
+        <%= form.label :word %>:
+        <%= form.text_field :word %>
+      </div>
+      <div class="panel-body">
+        <%= form.label :meaning %>
+        <%= form.text_field :meaning %>
+      </div>
+      <div class="panel-body">
+        <%= form.label :reading %>
+        <%= form.text_field :reading %>
+      </div>
+      <div class="panel-body">
+        <%= form.submit %>
+      </div>
+    </div>
   </div>
 <% end %>

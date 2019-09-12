@@ -1,19 +1,70 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong><%= I18n.t("pages.terms.show.word") %>:</strong>
-  <%= @term.word %>
-</p>
-
-<p>
-  <strong><%= I18n.t("pages.terms.show.meaning") %>:</strong>
-  <%= @term.meaning %>
-</p>
-
-<p>
-  <strong><%= I18n.t("pages.terms.show.reading") %>:</strong>
-  <%= @term.reading %>
-</p>
-
-<%= link_to 'Edit', edit_term_path(@term) %> |
-<%= link_to 'Back', terms_path %>
+<div class="container-fluid">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>
+        <%= I18n.t("pages.terms.show.created_by") %>
+        </th>
+        <th>
+          <%= I18n.t("pages.terms.show.word") %>:
+        </th>
+        <th>
+          <%= I18n.t("pages.terms.show.meaning") %>:
+        <th>
+          <%= I18n.t("pages.terms.show.reading") %>:
+        </th>
+        <th>
+          <%= I18n.t("pages.terms.show.phrases_term") %>
+        </th>
+        <th>
+          <%= I18n.t("pages.terms.show.likes") %>
+        </th>
+        <th>
+          <%= I18n.t("pages.terms.show.phrases_term") %>
+        </th>
+        <th>
+          <%= "Status" %>
+        </th>
+      </tr>
+    </thead>
+   <tbody>
+      <tr>
+        <td>
+          <strong>
+            <%= @term.user.username %>:
+          </strong>
+        </td>
+        <td>
+          <%= @term.word %>
+        </td>
+        <td>
+          <%= @term.meaning %>
+        </td>
+        <td>
+          <%= @term.reading %>
+        </td>
+        <td>
+          <%= link_to new_term_phrases_term_path(@term) do %>
+            <i class="fas fa-external-link-alt"> New</i>
+          <% end %>
+        </td>
+        <td><% pre_like = @term.likes.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+          <%= link_to term_like_path(@term, pre_like), method: :delete  do %>
+            <i class="fas fa-heart"></i>
+          <% end %>
+          <%= link_to (@term.likes.count), term_likes_path(@term) %>
+        <% else %>
+          <%= link_to term_likes_path(@term), method: :post do %>
+            <i class="fas fa-heart"></i>
+          <% end %>
+          <%= @term.likes.count %>
+        <% end %>
+        </td>
+        <td><i class="fas fa-list-ul"></i><%= link_to 'Lists',  term_phrases_terms_path(@term, @phrases_term) %></td>
+        <td><u>Watched</u></th>
+      </tr>
+  </table>
+<%= link_to 'Back', terms_path %> |
+<%= link_to 'Edit', edit_term_path %> 
+</div>

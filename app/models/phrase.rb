@@ -3,6 +3,7 @@
 class Phrase < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :terms
+  has_many :phrases_terms
   validates :sentence, presence: true
   has_many :comments, dependent: :destroy
   scope :recent, -> { order("created_at DESC") }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_013827) do
+ActiveRecord::Schema.define(version: 2019_08_30_060932) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2019_08_07_013827) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["phrase_id"], name: "index_comments_on_phrase_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "term_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["term_id"], name: "index_likes_on_term_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "phrases", force: :cascade do |t|
@@ -34,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_08_07_013827) do
     t.integer "term_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "term_word"
+    t.string "phrase_sentence"
     t.index ["phrase_id"], name: "index_phrases_terms_on_phrase_id"
     t.index ["term_id"], name: "index_phrases_terms_on_term_id"
   end
@@ -79,6 +90,8 @@ ActiveRecord::Schema.define(version: 2019_08_07_013827) do
 
   add_foreign_key "comments", "phrases"
   add_foreign_key "comments", "users"
+  add_foreign_key "likes", "terms"
+  add_foreign_key "likes", "users"
   add_foreign_key "phrases_terms", "phrases"
   add_foreign_key "phrases_terms", "terms"
 end
