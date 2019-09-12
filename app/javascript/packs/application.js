@@ -53,3 +53,14 @@ window.onclick = function(event) {
     }
   }
 }
+// houver for like
+window.countFunction = function () {
+  document.getElementById("some class").classList.toggle("show");
+}
+
+// close the hinde if the user clicks outside of it 
+window.onclick = function(event) {
+  if (!event.targer.matches('.some class')) {
+    var abd = document.getElementsByClassName
+  }
+}

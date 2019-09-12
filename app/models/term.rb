@@ -10,7 +10,7 @@ class Term < ApplicationRecord
   has_many :phrases_terms
   has_many :likes, dependent: :destroy
   scope :recent, -> { order ("created_at DESC") }
-  def self.search(search)
-  where("name LIKE ? OR ingredients LIKE ? OR cooking_instructions LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
-  end
+    def self.search(search)
+      where("name LIKE ? OR ingredients LIKE ? OR cooking_instructions LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+    end
 end

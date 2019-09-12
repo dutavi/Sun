@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @phrases = @user.phrases
     @terms = @user.terms
+    @likes = @user.likes
     @phrases = Phrase.paginate(page: params[:page], per_page: 10)
     @terms = Term.paginate(page: params[:page], per_page: 10)
     authorize @user

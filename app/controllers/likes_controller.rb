@@ -4,6 +4,10 @@ class LikesController < ApplicationController
   before_action :find_term
   before_action :find_like, only: [:destroy]
 
+  def index
+    @likes = @term.likes
+  end
+
   def create
     if already_liked?
       flash[:notice] = I18n.t"pages.likes.create.flash"

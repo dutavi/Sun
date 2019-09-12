@@ -1,7 +1,5 @@
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
 <div class="container">
   <div class="row">
     <div class="col-md-9">
@@ -9,7 +7,6 @@
         <div class="panel panel-default">
           <div class="row">
             <div class="col-md-12 lead">
-              <i><%= gravatar_tag @user.email, :size => 50 %></i>
               <h2>Edit <%= resource_name.to_s.humanize %></h2>
               <hr>
               <div class="col-md-8" >

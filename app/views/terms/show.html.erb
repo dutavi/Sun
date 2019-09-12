@@ -44,7 +44,7 @@
           <%= @term.reading %>
         </td>
         <td>
-          <%= link_to new_term_phrases_term_path(@term, @phrases_term) do %>
+          <%= link_to new_term_phrases_term_path(@term) do %>
             <i class="fas fa-external-link-alt"> New</i>
           <% end %>
         </td>
@@ -53,7 +53,7 @@
           <%= link_to term_like_path(@term, pre_like), method: :delete  do %>
             <i class="fas fa-heart"></i>
           <% end %>
-          <%= @term.likes.count %>
+          <%= link_to (@term.likes.count), term_likes_path(@term) %>
         <% else %>
           <%= link_to term_likes_path(@term), method: :post do %>
             <i class="fas fa-heart"></i>
